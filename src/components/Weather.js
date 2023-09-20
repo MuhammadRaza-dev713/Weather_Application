@@ -2,8 +2,8 @@
 import Image from "next/image";
 
 
-const Weather = ({ data }) => {
 
+const Weather = ({ data }) => {
 
     console.log(data);
     return (

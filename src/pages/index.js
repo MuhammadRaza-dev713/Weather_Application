@@ -2,16 +2,20 @@
 import Image from 'next/image'
 import {Inter} from 'next/font/google'
 import axios from 'axios'
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import {BsSearch} from 'react-icons/bs'
 import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
 import Spinner from "@/components/Spinner";
 import Weather from "@/components/Weather";
+import {useRouter} from "next/navigation";
+import {error} from "next/dist/build/output/log";
 
 
 const inter = Inter({subsets: ['latin']})
 
 export default function Home() {
+
+
 
     const [city, setCity] = useState('')
     const [weather, setWeather] = useState({})
@@ -20,6 +24,7 @@ export default function Home() {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}`
     const fetchWeather = (e) => {
         e.preventDefault()
+
 
         if (city === '') {
             return
@@ -30,9 +35,14 @@ export default function Home() {
             .finally(() => setLoading(false))
         // console.log(response.data)
 
-        setCity('')
+        //setCity('')
         // setLoading(false)
     }
+
+    const router = useRouter()
+    useEffect(() => {
+        router.push(`?city=${city}`,{scroll:false})
+    }, [city,router]);
 
 
     return (
@@ -55,7 +65,7 @@ export default function Home() {
                       className="flex justify-between items-center w-full m-auto p-3 bg-transparent border border-gray-400 text-white rounded-2xl">
                     <div>
                         <input onChange={(e) => setCity(e.target.value)}
-                               className="bg-transparent border-none text-white focus:outline-none text-2xl "
+                               className="bg-transparent border-none text-white focus:outline-none text-2xl"
                                type="text"
                                placeholder="Search City"/>
                     </div>
