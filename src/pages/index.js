@@ -35,7 +35,7 @@ export default function Home() {
     }, [city, router]);
 
     return (
-        <div className="relative min-h-screen flex flex-col items-center justify-center pb-[2rem]">
+        <div className="relative min-h-screen flex flex-col items-center  pb-[2rem]">
             {loading && (
                 <div className="h-1 w-full absolute top-0 z-20 bg-green-950">
                     <div className="w-full border-l-[16rem] border-green-900 h-full animate-indefinite" />
@@ -55,7 +55,7 @@ export default function Home() {
             </div>
 
             {/* Header */}
-            <div className="relative flex flex-col sm:flex-row justify-between items-center w-full py-5 px-4 sm:px-8 text-white z-10 gap-4 sm:gap-0">
+            <div className="relative top-0 flex flex-col sm:flex-row justify-between items-center w-full py-5 px-4 sm:px-8 text-white z-10 gap-4 sm:gap-0">
                 <h1 className="text-3xl text-white text-center sm:text-left">CloudSync</h1>
 
                 {/* Search Form */}
